@@ -1,0 +1,39 @@
+<%- include('partials/header') %>
+<body class="bg-dark text-light">
+    <div class="container mt-5 mb-5" style="max-width: 500px;">
+        <h2>Cadastre-se</h2>
+        <% if (typeof mensagemErro !== 'undefined' && mensagemErro) { %>
+            <div class="alert alert-danger mt-3"><%= mensagemErro %></div>
+        <% } %>
+        <form action="/auth/register" method="POST" class="mt-3">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nome Completo</label>
+                <input type="text" class="form-control" id="name" name="name" value="<%= locals.name || '' %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="<%= locals.email || '' %>" required>
+            </div>
+            <div class="mb-3">
+                <label for="cpf" class="form-label">CPF (formato: 123.456.789-00)</label>
+                <input type="text" class="form-control" id="cpf" name="cpf" value="<%= locals.cpf || '' %>" placeholder="123.456.789-00" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefone" class="form-label">Telefone (somente números)</label>
+                <input type="tel" class="form-control" id="telefone" name="telefone" value="<%= locals.telefone || '' %>" placeholder="11987654321" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirmar Senha</label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+        </form>
+        <p class="mt-3 text-center">Já tem uma conta? <a href="/auth/login" class="text-warning">Faça Login</a></p>
+    </div>
+    <%- include('partials/footer') %>
+</body>
+</html>

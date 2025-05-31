@@ -19,7 +19,6 @@ const db = new sqlite3.Database(DBSOURCE, (err) => {
     throw err;
   } else {
     console.log('Conectado ao banco de dados SQLite.');
-    // Habilita chaves estrangeiras (se você planeja usá-las)
     db.run("PRAGMA foreign_keys = ON;", (pragmaErr) => {
       if (pragmaErr) {
         console.error("Erro ao habilitar chaves estrangeiras:", pragmaErr.message);
@@ -59,6 +58,23 @@ const db = new sqlite3.Database(DBSOURCE, (err) => {
         console.error('Erro ao criar tabela propostas:', tableErr.message);
       } else {
         console.log("Tabela 'propostas' pronta ou já existente.");
+      }
+    });
+
+    // Tabela para Usuários
+    db.run(`CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      email TEXT NOT NULL UNIQUE, -- Email deve ser único
+      password TEXT NOT NULL,     -- Armazenará o hash da senha
+      cpf TEXT UNIQUE,            -- CPF também pode ser único
+      telefone TEXT,
+      timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+    )`, (tableErr) => {
+      if (tableErr) {
+        console.error('Erro ao criar tabela users:', tableErr.message);
+      } else {
+        console.log("Tabela 'users' pronta ou já existente.");
       }
     });
   }

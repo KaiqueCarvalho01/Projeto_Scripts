@@ -16,8 +16,23 @@
                     <a class="nav-link active text-white" aria-current="page" href="/#location">LOCALIZAÇÃO</a> </li>
                 <li class="nav-item">
                     <a class="nav-link active text-white" aria-current="page" href="/contato">CONTATO</a> </li>
-                <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="page" href="/login">LOGIN</a>   </li>
+                <% if (locals.isAuthenticated) { %>
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href=""><span class="navbar-text active text-white"> 
+                        Olá, <%= locals.currentUser.name %>!
+                        </span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/logout">Logout</a>
+                    </li>
+                    <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/register">Cadastro</a>
+                    </li>
+                <% } %>
             </ul>
         </div>
     </div>

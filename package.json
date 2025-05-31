@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/KaiqueCarvalho01/Automobile#readme",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "connect-sqlite3": "^0.9.15",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "express-session": "^1.18.1",
     "sqlite3": "^5.1.7"
   }
 }
